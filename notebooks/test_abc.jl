@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.14.2
+# v0.14.4
 
 using Markdown
 using InteractiveUtils
@@ -44,8 +44,8 @@ After segmenting the inserts (including both the calcium and the tissue) in 3D s
 
 # ╔═╡ d75112c2-c1db-4131-a44b-d2482844efdf
 begin
-	x_measured = 23.0711
-	y_measured = 9.3159
+	x_measured = 40.9974
+	y_measured = 34.6133
 end
 
 # ╔═╡ eb5205c9-1304-4f4b-881e-77678c542a26
