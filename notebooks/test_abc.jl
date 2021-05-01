@@ -39,7 +39,7 @@ Given we have 6 inserts with known values of 50 mg/cc calcium per insert and the
 
 Measured `Insert group A`:
 
-After segmenting the inserts (including both the calcium and the tissue) in 3D slicer, we calculated a mean intensity of `x = 23.0711` for the high energy `135 kV` and `y = 9.3159` for the low energy `80 kV`
+After segmenting the inserts (including both the calcium and the tissue) in 3D slicer, we calculated a mean intensity of `x = 40.9974` for the high energy `135 kV` and `y = 34.6133` for the low energy `80 kV`
 """
 
 # ╔═╡ d75112c2-c1db-4131-a44b-d2482844efdf
