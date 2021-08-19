@@ -11,16 +11,18 @@ begin
 		Pkg.activate(mktempdir())
 		Pkg.Registry.update()
 		
-		Pkg.add(Pkg.PackageSpec(; name="CSV"))
-		Pkg.add(Pkg.PackageSpec(; name="DataFrames"))
-		Pkg.add(Pkg.PackageSpec(; name="LsqFit"))
-		Pkg.add(Pkg.PackageSpec(; name="XLSX"))
-		Pkg.add(Pkg.PackageSpec(; name="MLDataUtils"))
-		Pkg.add("PlutoUI")
-		Pkg.add("NIfTI")
-		Pkg.add("GalacticOptim")
-		Pkg.add("Optim")
-		Pkg.add("ModelingToolkit")
+		Pkg.add([
+				"CSV"
+				"DataFrames"
+				"LsqFit"
+				"XLSX"
+				"MLDataUtils"
+				"PlutoUI"
+				"NIfTI"
+				"GalacticOptim"
+				"Optim"
+				"ModelingToolkit"
+				])
 	end
 	
 	using CSV
