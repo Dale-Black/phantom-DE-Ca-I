@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.15.1
+# v0.16.0
 
 using Markdown
 using InteractiveUtils
@@ -52,9 +52,8 @@ Let's apply the calibration formula found in [An accurate method for direct dual
 
 # ╔═╡ 3e506496-ef3e-4f1e-8968-fb4ed4a50746
 md"""
-
 ## Load Data
-
+The CSV can also be found in the accompanying github repo [here](https://github.com/Dale-Black/phantom-DE-Ca-I/blob/master/data/calibration_water_iodine_calcium.csv)
 """
 
 # ╔═╡ f12f7207-66d2-46b7-9d18-724b6ea11ca5
