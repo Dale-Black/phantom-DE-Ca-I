@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.15.1
+# v0.16.0
 
 using Markdown
 using InteractiveUtils
@@ -17,7 +17,6 @@ begin
 # 				"DifferentialEquations"
 # 				"DiffEqFlux"
 # 				"PlutoUI"
-# 				"MLDataUtils"
 # 				])
 # 	end
 	
@@ -41,7 +40,8 @@ md"""
 
 # ╔═╡ 1122065b-b738-4679-9b3b-baecd241877b
 md"""
-## Load data
+## Load Data
+The CSV can also be found in the accompanying github repo [here](https://github.com/Dale-Black/phantom-DE-Ca-I/blob/master/data/calibration_water_iodine_calcium.csv)
 """
 
 # ╔═╡ 3ea88e55-985e-41ef-a45d-7eceb29f14b7
@@ -68,19 +68,18 @@ ground_truth_iodine, ground_truth_calcium = df[!, :iodine], df[!, :calcium];
 # ╔═╡ f53e751e-12a6-40d9-a6b1-26581be224eb
 gt_iodine, gt_calcium = ground_truth_iodine[1:8], ground_truth_calcium[9:end];
 
-# ╔═╡ f5e724e9-eb70-4d5b-a729-2f279c537dd2
+# ╔═╡ 66bbd0de-76ec-48b1-b506-3388fd269fb1
 md"""
-## Loss function
+## Calibration equation
+[An accurate method for direct dual-energy calibration and decomposition](https://www.researchgate.net/publication/20771282_An_accurate_method_for_direct_dual-energy_calibration_and_decomposition)
 """
 
 # ╔═╡ ef0d51cf-dc4b-4d85-b4ad-fc1e78b891a3
 md"""
 ```math
-\begin{aligned}
-	A &= a_o + a_1x + a_2y + a_3x^2 + a_4xy + a_5y^2 \\
-	B &= 1 + b_1x + b_2y \\
-	F &= \frac{A}{B}
+\begin{aligned}	F = \frac{a_o + a_1x + a_2y + a_3x^2 + a_4xy + a_5y^2}{1 + b_1x + b_2y} 
 \end{aligned}
+\tag{1}
 ```
 """
 
@@ -90,6 +89,11 @@ function f(x, y, p)
 	B = 1 + (p[7] * x) + (p[8] * y)
 	F = A / B
 end
+
+# ╔═╡ f5e724e9-eb70-4d5b-a729-2f279c537dd2
+md"""
+## Loss function
+"""
 
 # ╔═╡ 557ce6b8-82fb-4342-9d0a-19edb0c11125
 function loss(p)
@@ -149,14 +153,6 @@ begin
 	results[!, :predicted_calcium] = all_arr_calcium
 	results
 end
-
-# ╔═╡ d72a3178-34ba-455f-ab42-521d150403bb
-md"""
-## Visualize
-"""
-
-# ╔═╡ 357e343a-86c6-4a89-9e09-5f4dc3f5f74a
-plot(result_ode)
 
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
@@ -1076,9 +1072,9 @@ version = "0.12.66"
 
 [[MKL_jll]]
 deps = ["Artifacts", "IntelOpenMP_jll", "JLLWrappers", "LazyArtifacts", "Libdl", "Pkg"]
-git-tree-sha1 = "c253236b0ed414624b083e6b72bfe891fbd2c7af"
+git-tree-sha1 = "5455aef09b40e5020e1520f551fa3135040d4ed0"
 uuid = "856f044c-d86e-5d09-b602-aeab76dc8ba7"
-version = "2021.1.1+1"
+version = "2021.1.1+2"
 
 [[MacroTools]]
 deps = ["Markdown", "Random"]
@@ -2032,7 +2028,7 @@ version = "0.9.1+5"
 # ╠═4eaa0261-cfe7-4133-85f2-dc542caaf940
 # ╠═3015675d-e796-47bb-b48e-3c350ad8ab48
 # ╟─f87e5d1f-c971-45b2-ae71-203ec6ee01af
-# ╟─1122065b-b738-4679-9b3b-baecd241877b
+# ╠═1122065b-b738-4679-9b3b-baecd241877b
 # ╠═3ea88e55-985e-41ef-a45d-7eceb29f14b7
 # ╠═98ae2069-3207-459f-a7c9-949907179869
 # ╠═92c34ae2-c6ba-476b-bc52-2a7d924942a9
@@ -2040,9 +2036,10 @@ version = "0.9.1+5"
 # ╠═1ea15cc7-f503-42ff-87b4-3cbcabd83dae
 # ╠═6ff41999-9b26-4f07-b03c-a3e5b8a30a29
 # ╠═f53e751e-12a6-40d9-a6b1-26581be224eb
-# ╟─f5e724e9-eb70-4d5b-a729-2f279c537dd2
-# ╟─ef0d51cf-dc4b-4d85-b4ad-fc1e78b891a3
+# ╟─66bbd0de-76ec-48b1-b506-3388fd269fb1
+# ╠═ef0d51cf-dc4b-4d85-b4ad-fc1e78b891a3
 # ╠═b57d3ed7-a07a-4a7d-b895-f13120629b58
+# ╟─f5e724e9-eb70-4d5b-a729-2f279c537dd2
 # ╠═557ce6b8-82fb-4342-9d0a-19edb0c11125
 # ╟─489fe901-e291-4fd1-acc0-9e2efd203594
 # ╠═0e402747-7a48-4e6e-bc19-4eb05408cc02
@@ -2053,7 +2050,5 @@ version = "0.9.1+5"
 # ╠═e12addb4-7ff7-4161-840c-700d694e7e4c
 # ╠═8a199dbd-f628-4b9a-8a96-830bf103312a
 # ╠═a08cd8a2-507e-4d42-a3b3-cf33f8610d01
-# ╟─d72a3178-34ba-455f-ab42-521d150403bb
-# ╠═357e343a-86c6-4a89-9e09-5f4dc3f5f74a
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002

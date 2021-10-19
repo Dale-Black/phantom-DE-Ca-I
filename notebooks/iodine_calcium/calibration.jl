@@ -40,10 +40,7 @@ md"""
 Let's apply the calibration formula found in [An accurate method for direct dual-energy calibration and decomposition](https://www.researchgate.net/publication/20771282_An_accurate_method_for_direct_dual-energy_calibration_and_decomposition)
 
 ```math
-\begin{aligned}
-	A &= a_o + a_1x + a_2y + a_3x^2 + a_4xy + a_5y^2 \\
-	B &= 1 + b_1x + b_2y \\
-	F &= \frac{A}{B}
+\begin{aligned}	F = \frac{a_o + a_1x + a_2y + a_3x^2 + a_4xy + a_5y^2}{1 + b_1x + b_2y} 
 \end{aligned}
 \tag{1}
 ```
